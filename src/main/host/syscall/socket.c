@@ -1046,6 +1046,10 @@ SyscallReturn syscallhandler_setsockopt(SysCallHandler* sys, const SysCallArgs* 
                 sys, socket_desc, optname, optvalPtr, optlen);
             break;
         }
+	case IPPROTO_IP: {
+	    warning("TOS not really implemented");
+	    break;
+	}
         default:
             warning("setsockopt called with unsupported level %i with opt %i", level, optname);
             errcode = -ENOPROTOOPT;

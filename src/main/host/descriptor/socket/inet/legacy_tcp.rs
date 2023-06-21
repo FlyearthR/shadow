@@ -1168,6 +1168,12 @@ impl LegacyTcpSocket {
                 // TODO: implement this, pkg.go.dev/net uses it
                 log::trace!("setsockopt SO_BROADCAST not yet implemented");
             }
+            (libc::IPPROTO_IP, libc::IP_TOS) => {
+                log::trace!("TOS not really implemented");
+            }
+            (libc::IPPROTO_IP, libc::IP_RECVTOS) => {
+                log::trace!("TOS not really implemented");
+            }
             _ => {
                 log::warn!("setsockopt called with unsupported level {level} and opt {optname}");
                 return Err(Errno::ENOPROTOOPT.into());
