@@ -923,8 +923,11 @@ impl UdpSocket {
                 // this is used by linux to decode ecn
                 log::warn!("setsockopt IP_RECVTOS not yet implemented");
             }
+            (libc::IPPROTO_IP, libc::IP_PKTINFO) => {
+                log::warn!("setsockopt IP_PKTINFO not yet implemented");
+            }
             _ => {
-                log::debug!("setsockopt called with unsupported level {level} and opt {optname}");
+                log::warn!("setsockopt called with unsupported level {level} and opt {optname}");
                 return Err(Errno::ENOPROTOOPT.into());
             }
         }
