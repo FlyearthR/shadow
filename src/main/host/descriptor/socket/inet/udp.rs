@@ -956,6 +956,9 @@ impl UdpSocket {
             (libc::IPPROTO_IP, libc::IP_PKTINFO) => {
                 log::warn!("setsockopt IP_PKTINFO not yet implemented");
             }
+            (libc::IPPROTO_IP, libc::IP_MTU_DISCOVER) => {
+                log::warn!("setsockopt IP_MTU_DISCOVER not yet implemented");
+            }
             _ => {
                 log::warn!("setsockopt called with unsupported level {level} and opt {optname}");
                 return Err(Errno::ENOPROTOOPT.into());
